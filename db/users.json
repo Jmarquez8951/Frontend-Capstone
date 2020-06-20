@@ -1,0 +1,16 @@
+{
+  "user1": {
+    "username": "HereGoesMyUsername",
+    "bio": "Here is where I would put my own description.",
+    "profilePic": "https://www.netclipart.com/pp/m/421-4210379_good-profile-pictures-for-discord.png",
+    "uid": "myUid",
+    "favoriteGame": "GTA 6"
+  },
+  "user2": {
+    "username": "NotMyUserName",
+    "bio": "This is not mine so no description needed.",
+    "profilePic": "No-Image-required-here.jpg",
+    "uid": "notMyUid",
+    "favoriteGame": "GTA V"
+  }
+}
