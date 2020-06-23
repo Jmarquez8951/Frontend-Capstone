@@ -1,7 +1,9 @@
 import React from 'react';
 import './Games.scss';
+
+import GameCards from '../../shared/GameCards/GameCards';
+
 import gameDB from '../../../helpers/data/gameDB';
-// import { Link } from 'react-router-dom';
 
 class Games extends React.Component {
   state = {
@@ -9,6 +11,18 @@ class Games extends React.Component {
     games: [],
     nextPage: '',
     previousPage: '',
+  }
+
+  getGames = () => {
+    gameDB.getAllGames()
+      .then((response) => {
+        this.setState({ games: response.results, nextPage: response.next, previousPage: response.previous });
+      })
+      .catch((err) => console.error('could not get all games', err));
+  }
+
+  componentDidMount() {
+    this.getGames();
   }
 
   gameSearchChange = (e) => {
@@ -28,8 +42,10 @@ class Games extends React.Component {
   }
 
   render() {
-    const { gameSearch } = this.state;
-
+    const { gameSearch, games } = this.state;
+    const buildGameCards = games.map((game) => (
+      <GameCards key={game.id} game={game} />
+    ));
     return (
       <div className="Games">
         <h1>Games Page</h1>
@@ -46,6 +62,9 @@ class Games extends React.Component {
             <button className="btn btn-secondary col-1 ml-2" onClick={this.searchEvent}>Search</button>
           </div>
         </form>
+        <div className="d-flex flex-wrap justify-content-center">
+          {buildGameCards}
+        </div>
       </div>
     );
   }
