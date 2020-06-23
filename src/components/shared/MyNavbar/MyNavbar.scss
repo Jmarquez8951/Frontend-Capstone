@@ -1,5 +1,9 @@
 .MyNavbar {
   display: block;
+  border-bottom: black solid 2px;
+  .navbar-color {
+    background-color: rgb(199, 199, 199);
+  }
   .logo {
     width: 80px;
   }

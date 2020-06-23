@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Collapse,
   Navbar,
@@ -43,6 +44,18 @@ class MyNavbar extends React.Component {
         return (
           <Nav className="ml-auto" navbar>
             <NavItem>
+              <NavLink>Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>Profile</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>My Games</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>Games</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink className="btn btn-danger" onClick={this.logMeOut}>Logout</NavLink>
             </NavItem>
           </Nav>
@@ -53,7 +66,7 @@ class MyNavbar extends React.Component {
 
     return (
       <div className="MyNavbar">
-        <Navbar color="light" light expand="md">
+        <Navbar className="navbar-color" light expand="md">
         <NavbarBrand href="/"><img className="logo" src="https://i.imgur.com/BBGvMxI.png" alt="Logo"/></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
