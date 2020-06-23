@@ -59,15 +59,6 @@ class App extends React.Component {
 
   render() {
     const { authed } = this.state;
-    const loadComponent = () => {
-      let componentToLoad = '';
-      if (authed) {
-        componentToLoad = <h1>Main body</h1>;
-      } else {
-        componentToLoad = <Auth />;
-      }
-      return componentToLoad;
-    };
 
     return (
       <div className="App">
