@@ -16,6 +16,7 @@ class Games extends React.Component {
   getGames = () => {
     gameDB.getAllGames()
       .then((response) => {
+        console.log(response.results);
         this.setState({ games: response.results, nextPage: response.next, previousPage: response.previous });
       })
       .catch((err) => console.error('could not get all games', err));
