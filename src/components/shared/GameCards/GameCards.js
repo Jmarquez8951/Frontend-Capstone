@@ -12,19 +12,45 @@ class GameCards extends React.Component {
   render() {
     const { game } = this.props;
     const singleLink = `/game/${game.slug}/${game.id}`;
-    const gameGenres = game.genres.map((genre) => (
-      <p key={genre.id} className="text-white bg-info border border-dark rounded m-1 pr-2 pl-2">{genre.name}</p>
-    ));
+    const imgToRender = () => {
+      if (game.imgUrl) {
+        return <img src={game.imgUrl} className="card-img-top border border-dark rounded" alt="game artwork"/>;
+      }
+      if (game.short_screenshots[0].image) {
+        return <img src={game.short_screenshots[0].image} className="card-img-top border border-dark rounded" alt="game artwork"/>;
+      }
+      return '';
+    };
+
+    const wishlistRender = () => {
+      if (game.wishList === true || game.wishList === false) {
+        if (game.wishList === true) {
+          return <button className="btn btn-danger">Remove from Wishlist</button>;
+        }
+        if (game.wishList === false) {
+          return <button className="btn btn-success">Add to Wishlist</button>;
+        }
+      }
+      return '';
+    };
+
     return (
       <div className="GameCards m-3 col-3 d-flex flex">
         <div className="card bg-dark p-2">
-          <img src={game.short_screenshots[0].image} className="card-img-top border border-dark rounded" alt="game artwork"/>
+          {imgToRender()}
           <div className="card-body rounded bg-secondary m-1">
-            <h5 className="card-title text-white">{game.name}</h5>
+            {game.name
+              ? <h5 className="card-title text-white">{game.name}</h5>
+              : <h5 className="card-title text-white">{game.gameName}</h5>}
             <div className="d-flex flex-wrap justify-content-center">
-              {gameGenres}
+              { game.genres ? (game.genres.map((genre) => (
+                <p key={genre.id} className="text-white bg-info border border-dark rounded m-1 pr-2 pl-2">{genre.name}</p>
+              ))) : ('') }
             </div>
-            <p className="text-white">Rating: {game.rating} <i className="fas fa-star"></i></p>
+            {game.rating
+              ? <p className="text-white">Rating: {game.rating} <i className="fas fa-star"></i></p>
+              : ''}
+              {wishlistRender()}
             <Link className="btn btn-dark m-1" to={singleLink}>More Info</Link>
           </div>
         </div>

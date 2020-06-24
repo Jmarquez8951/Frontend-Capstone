@@ -3,8 +3,8 @@ import firebaseConfig from '../apiKeys.json';
 
 const baseUrl = firebaseConfig.firebaseKeys.databaseURL;
 
-const getAllMyUsersGames = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/games`)
+const getAllMyUsersGames = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/games.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       const games = [];
       const theGames = response.data;
