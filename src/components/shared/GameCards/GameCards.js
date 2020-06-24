@@ -11,7 +11,12 @@ class GameCards extends React.Component {
 
   render() {
     const { game } = this.props;
-    const singleLink = `/game/${game.slug}/${game.id}`;
+    const singleLink = () => {
+      if (game.uid) {
+        return `/my-game/${game.id}`;
+      }
+      return `/game/${game.id}`;
+    };
     const imgToRender = () => {
       if (game.imgUrl) {
         return <img src={game.imgUrl} className="card-img-top border border-dark rounded" alt="game artwork"/>;
@@ -25,10 +30,10 @@ class GameCards extends React.Component {
     const wishlistRender = () => {
       if (game.wishList === true || game.wishList === false) {
         if (game.wishList === true) {
-          return <button className="btn btn-danger">Remove from Wishlist</button>;
+          return <button className="btn btn-danger btn-sm"><i className="fas fa-minus"></i> Remove from Wishlist</button>;
         }
         if (game.wishList === false) {
-          return <button className="btn btn-success">Add to Wishlist</button>;
+          return <button className="btn btn-success btn-sm"><i className="fas fa-cart-plus"></i> Add to Wishlist</button>;
         }
       }
       return '';
