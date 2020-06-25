@@ -3,10 +3,28 @@ import './GameCards.scss';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import authData from '../../../helpers/data/authData';
+import smash from '../../../helpers/data/smash';
 
 class GameCards extends React.Component {
   static propTypes = {
     game: PropTypes.object.isRequired,
+  }
+
+  addToMyGames = (e) => {
+    e.preventDefault();
+    const { game } = this.props;
+    const uid = authData.getUid();
+    const newGame = {
+      dbGameId: game.id,
+      gameName: game.name,
+      imgUrl: game.short_screenshots[0].image,
+      wishList: false,
+      uid,
+    };
+    smash.checkIfGoodToAdd(uid, newGame)
+      .then(() => {})
+      .catch((err) => console.error('could not add to games', err));
   }
 
   render() {
@@ -17,6 +35,7 @@ class GameCards extends React.Component {
       }
       return `/game/${game.id}`;
     };
+
     const imgToRender = () => {
       if (game.imgUrl) {
         return <img src={game.imgUrl} className="card-img-top border border-dark rounded" alt="game artwork"/>;
@@ -56,6 +75,9 @@ class GameCards extends React.Component {
               ? <p className="text-white">Rating: {game.rating} <i className="fas fa-star"></i></p>
               : ''}
               {wishlistRender()}
+              {game.uid
+                ? ''
+                : <button className="btn btn-success" onClick={this.addToMyGames}>Add To My Games</button>}
             <Link className="btn btn-dark m-1" to={singleLink}>More Info</Link>
           </div>
         </div>

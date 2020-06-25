@@ -19,4 +19,6 @@ const getAllMyUsersGames = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getAllMyUsersGames };
+const addGameToMyGames = (newGame) => axios.post(`${baseUrl}/games.json`, newGame);
+
+export default { getAllMyUsersGames, addGameToMyGames };
