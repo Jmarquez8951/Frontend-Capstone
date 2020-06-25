@@ -2,6 +2,7 @@ import React from 'react';
 import './Games.scss';
 
 import GameCards from '../../shared/GameCards/GameCards';
+import MyAlert from '../../shared/MyAlert/MyAlert';
 
 import gameDB from '../../../helpers/data/gameDB';
 
@@ -11,6 +12,7 @@ class Games extends React.Component {
     games: [],
     nextPage: '',
     previousPage: '',
+    isOpen: false,
   }
 
   getGames = () => {
@@ -41,13 +43,18 @@ class Games extends React.Component {
       .catch((err) => console.error('could not get games', err));
   }
 
+  toggleAlert = (toggle) => {
+    this.setState({ isOpen: toggle });
+  }
+
   render() {
-    const { gameSearch, games } = this.state;
+    const { gameSearch, games, isOpen } = this.state;
     const buildGameCards = games.map((game) => (
-      <GameCards key={game.id} game={game} />
+      <GameCards isOpen={isOpen} toggleAlert={this.toggleAlert} key={game.id} game={game} />
     ));
     return (
       <div className="Games">
+        <MyAlert isOpen={isOpen} toggleAlert={this.toggleAlert}/>
         <h1>Games Page</h1>
         <form className="col-12">
           <div className="d-flex">
