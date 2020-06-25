@@ -9,13 +9,13 @@ import smash from '../../../helpers/data/smash';
 class GameCards extends React.Component {
   static propTypes = {
     game: PropTypes.object.isRequired,
-    isOpen: PropTypes.bool.isRequired,
     toggleAlert: PropTypes.func.isRequired,
+    toggleSuccess: PropTypes.func.isRequired,
   }
 
   addToMyGames = (e) => {
     e.preventDefault();
-    const { game, toggleAlert } = this.props;
+    const { game, toggleAlert, toggleSuccess } = this.props;
     const uid = authData.getUid();
     const newGame = {
       dbGameId: game.id,
@@ -30,7 +30,7 @@ class GameCards extends React.Component {
           toggleAlert(true);
         }
         if (response === 0) {
-          console.log('this one adds the game');
+          toggleSuccess(true);
         }
       })
       .catch((err) => console.error('could not add to games', err));
