@@ -15,8 +15,10 @@ const checkIfGoodToAdd = (uid, newGame) => new Promise((resolve, reject) => {
       if (usersGames.length === games) {
         myGamesData.addGameToMyGames(newGame)
           .then(() => {});
+        resolve(0);
+      } else {
+        resolve(1);
       }
-      resolve();
     })
     .catch((err) => reject(err));
 });
