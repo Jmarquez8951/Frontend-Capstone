@@ -5,6 +5,7 @@ import GameCards from '../../shared/GameCards/GameCards';
 import MyAlert from '../../shared/MyAlert/MyAlert';
 
 import gameDB from '../../../helpers/data/gameDB';
+import MySuccessAlert from '../../shared/MySuccessAlert/MySuccessAlert';
 
 class Games extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class Games extends React.Component {
     nextPage: '',
     previousPage: '',
     isOpen: false,
+    successIsOpen: false,
   }
 
   getGames = () => {
@@ -47,13 +49,24 @@ class Games extends React.Component {
     this.setState({ isOpen: toggle });
   }
 
+  toggleSuccess = (toggleForSuccess) => {
+    this.setState({ successIsOpen: toggleForSuccess });
+  }
+
   render() {
-    const { gameSearch, games, isOpen } = this.state;
+    const {
+      gameSearch,
+      games,
+      isOpen,
+      successIsOpen,
+    } = this.state;
+
     const buildGameCards = games.map((game) => (
-      <GameCards isOpen={isOpen} toggleAlert={this.toggleAlert} key={game.id} game={game} />
+      <GameCards isOpen={isOpen} successIsOpen={successIsOpen} toggleAlert={this.toggleAlert} toggleSuccess={this.toggleSuccess} key={game.id} game={game} />
     ));
     return (
       <div className="Games">
+        <MySuccessAlert successIsOpen={successIsOpen} toggleSuccess={this.toggleSuccess}/>
         <MyAlert isOpen={isOpen} toggleAlert={this.toggleAlert}/>
         <h1>Games Page</h1>
         <form className="col-12">

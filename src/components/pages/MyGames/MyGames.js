@@ -5,7 +5,6 @@ import GameCards from '../../shared/GameCards/GameCards';
 
 import myGamesData from '../../../helpers/data/myGamesData';
 import authData from '../../../helpers/data/authData';
-// import { Link } from 'react-router-dom';
 
 class MyGames extends React.Component {
   state = {
@@ -21,6 +20,12 @@ class MyGames extends React.Component {
       .catch((err) => console.error('could not get your games', err));
   }
 
+  removeGame = (gameId) => {
+    myGamesData.removeThisGame(gameId)
+      .then(() => this.getMyGames())
+      .catch((err) => console.error('could not remove game', err));
+  }
+
   componentDidMount() {
     this.getMyGames();
   }
@@ -28,7 +33,7 @@ class MyGames extends React.Component {
   render() {
     const { games } = this.state;
     const buildGameCards = games.map((game) => (
-      <GameCards key={game.id} game={game} />
+      <GameCards removeGame={this.removeGame} key={game.id} game={game} />
     ));
 
     return (
