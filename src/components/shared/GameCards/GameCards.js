@@ -11,6 +11,7 @@ class GameCards extends React.Component {
     game: PropTypes.object.isRequired,
     toggleAlert: PropTypes.func.isRequired,
     toggleSuccess: PropTypes.func.isRequired,
+    removeGame: PropTypes.func.isRequired,
   }
 
   addToMyGames = (e) => {
@@ -36,6 +37,12 @@ class GameCards extends React.Component {
       .catch((err) => console.error('could not add to games', err));
   }
 
+  deleteGameEvent = (e) => {
+    e.preventDefault();
+    const { game, removeGame } = this.props;
+    removeGame(game.id);
+  }
+
   render() {
     const { game } = this.props;
     const singleLink = () => {
@@ -58,10 +65,10 @@ class GameCards extends React.Component {
     const wishlistRender = () => {
       if (game.wishList === true || game.wishList === false) {
         if (game.wishList === true) {
-          return <button className="btn btn-danger btn-sm"><i className="fas fa-minus"></i> Remove from Wishlist</button>;
+          return <button className="btn btn-danger btn-sm m-1"><i className="fas fa-minus"></i> Remove from Wishlist</button>;
         }
         if (game.wishList === false) {
-          return <button className="btn btn-success btn-sm"><i className="fas fa-cart-plus"></i> Add to Wishlist</button>;
+          return <button className="btn btn-success btn-sm m-1"><i className="fas fa-cart-plus"></i> Add to Wishlist</button>;
         }
       }
       return '';
@@ -85,7 +92,7 @@ class GameCards extends React.Component {
               : ''}
               {wishlistRender()}
               {game.uid
-                ? ''
+                ? <button className="btn btn-danger m-1" onClick={this.deleteGameEvent}>Delete from Vault</button>
                 : <button className="btn btn-success" onClick={this.addToMyGames}>Add To My Games</button>}
             <Link className="btn btn-dark m-1" to={singleLink}>More Info</Link>
           </div>
