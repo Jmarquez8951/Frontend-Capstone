@@ -49,7 +49,7 @@ class GameSingleView extends React.Component {
             <div className="d-flex flex-wrap justify-content-center">
               <h3>Genres:</h3>
               { game.genres ? (game.genres.map((genre) => (
-                <p key={genre.id} className="bg-warning text-dark border border-dark rounded m-1 pr-2 pl-2">{genre.name}</p>
+                <p key={genre.id} className="bg-warning text-dark border border-dark rounded my-auto m-1 pr-2 pl-2">{genre.name}</p>
               ))) : ('') }
             </div>
             <div className="tags">

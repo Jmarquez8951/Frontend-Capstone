@@ -10,16 +10,24 @@ class GameSingleView extends React.Component {
   state = {
     game: {},
     images: [],
+    wishlist: false,
   }
 
-  componentDidMount() {
-    const { dbGameId } = this.props.match.params;
+  getAllInfo = () => {
+    const { dbGameId, gameId } = this.props.match.params;
     gameDB.getSingleGame(dbGameId)
       .then((response) => this.setState({ game: response }))
       .catch((err) => console.error('could not get game', err));
     gameDB.getGameScreenshots(dbGameId)
       .then((response) => this.setState({ images: response }))
       .catch((err) => console.error('could not get images', err));
+    myGamesData.getWishlistValue(gameId)
+      .then((response) => this.setState({ wishlist: response }))
+      .catch((err) => console.error('could not get value of wishlist', err));
+  }
+
+  componentDidMount() {
+    this.getAllInfo();
   }
 
   removeThisGame = (e) => {
@@ -30,13 +38,33 @@ class GameSingleView extends React.Component {
       .catch((err) => console.error('could not remove game', err));
   }
 
+  addGameToWishList = (e) => {
+    e.preventDefault();
+    const { gameId } = this.props.match.params;
+    myGamesData.addToWishlist(gameId)
+      .then(() => this.getAllInfo())
+      .catch((err) => console.error('could not add to wishlist', err));
+  }
+
+  removeGameFromWishList = (e) => {
+    e.preventDefault();
+    const { gameId } = this.props.match.params;
+    myGamesData.removeFromWishlist(gameId)
+      .then(() => this.getAllInfo())
+      .catch((err) => console.error('could not remove game from wishlist', err));
+  }
+
   render() {
-    const { game, images } = this.state;
+    const { game, images, wishlist } = this.state;
 
     return (
       <div className="GameSingleView">
-        <div className="d-flex align-self-start">
+        <div className="d-flex justify-content-between">
           <button className="btn btn-danger m-3" onClick={this.removeThisGame}>Remove From My Games</button>
+          {wishlist
+            ? <button onClick={this.removeGameFromWishList} className="btn btn-danger m-3"><i class="fas fa-trash"></i> Remove From My Wishlist</button>
+            : <button onClick={this.addGameToWishList} className="btn btn-success m-3"><i class="fas fa-cart-plus"></i> Add To My Wishlist</button>
+            }
         </div>
         <h1>{game.name}</h1>
         <div>
@@ -61,7 +89,7 @@ class GameSingleView extends React.Component {
             <div className="d-flex flex-wrap justify-content-center">
               <h3>Genres:</h3>
               { game.genres ? (game.genres.map((genre) => (
-                <p key={genre.id} className="bg-warning text-dark border border-dark rounded m-1 pr-2 pl-2">{genre.name}</p>
+                <p key={genre.id} className="bg-warning text-dark border border-dark rounded my-auto m-1 pr-2 pl-2">{genre.name}</p>
               ))) : ('') }
             </div>
             <div className="tags">

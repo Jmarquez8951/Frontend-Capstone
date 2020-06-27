@@ -30,10 +30,22 @@ class MyGames extends React.Component {
     this.getMyGames();
   }
 
+  updateWishlist = (gameId) => {
+    myGamesData.addToWishlist(gameId)
+      .then(() => this.getMyGames())
+      .catch((err) => console.error('could not remove from wishlist', err));
+  }
+
+  wishlistRemove = (gameId) => {
+    myGamesData.removeFromWishlist(gameId)
+      .then(() => this.getMyGames())
+      .catch((err) => console.error('could not remove from wishlist', err));
+  }
+
   render() {
     const { games } = this.state;
     const buildGameCards = games.map((game) => (
-      <GameCards removeGame={this.removeGame} key={game.id} game={game} />
+      <GameCards wishlistRemove={this.wishlistRemove} updateWishlist={this.updateWishlist} removeGame={this.removeGame} key={game.id} game={game} />
     ));
 
     return (
