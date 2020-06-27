@@ -49,7 +49,7 @@ class GameCards extends React.Component {
       if (game.uid) {
         return `/my-game/${game.id}`;
       }
-      return `/game/${game.id}`;
+      return `/game/${game.slug}/${game.id}`;
     };
 
     const imgToRender = () => {
