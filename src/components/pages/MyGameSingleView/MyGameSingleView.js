@@ -4,6 +4,7 @@ import gameDB from '../../../helpers/data/gameDB';
 
 import MyProgress from '../../shared/MyProgress/MyProgress';
 import ImageCarousel from '../../shared/ImageCarousel/ImageCarousel';
+import myGamesData from '../../../helpers/data/myGamesData';
 
 class GameSingleView extends React.Component {
   state = {
@@ -21,11 +22,22 @@ class GameSingleView extends React.Component {
       .catch((err) => console.error('could not get images', err));
   }
 
+  removeThisGame = (e) => {
+    e.preventDefault();
+    const { gameId } = this.props.match.params;
+    myGamesData.removeThisGame(gameId)
+      .then(() => this.props.history.push('/my-games'))
+      .catch((err) => console.error('could not remove game', err));
+  }
+
   render() {
     const { game, images } = this.state;
 
     return (
       <div className="GameSingleView">
+        <div className="d-flex align-self-start">
+          <button className="btn btn-danger m-3" onClick={this.removeThisGame}>Remove From My Games</button>
+        </div>
         <h1>{game.name}</h1>
         <div>
           <img className="img-background" src={game.background_image} alt="background"/>
