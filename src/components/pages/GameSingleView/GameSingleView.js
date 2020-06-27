@@ -30,6 +30,9 @@ class GameSingleView extends React.Component {
         <div>
           <img className="img-background" src={game.background_image} alt="background"/>
           <p>{game.released}</p>
+          {game.esrb_rating
+            ? <p key={game.esrb_rating.id}>ESRB Rating: {game.esrb_rating.name}</p>
+            : ''}
         </div>
         <div className="description">
           <p>{game.description_raw}</p>
@@ -88,8 +91,8 @@ class GameSingleView extends React.Component {
             </div>
           : ''}
         {game.reddit_url
-          ? <div key="reddit-url" className="reddit mt-3 mb-3">
-              <i className="fab fa-reddit-square"></i>
+          ? <div key="reddit-url" className="reddit mt-3 mb-3 text-white">
+              <i className="fab fa-reddit-square reddit-logo"></i>
               <h4>{game.reddit_name}</h4>
               <p>{game.reddit_description}</p>
               <a className="btn btn-info" href={game.reddit_url} target="_blank" rel="noopener noreferrer">Checkout their Reddit Page</a>
@@ -124,7 +127,7 @@ class GameSingleView extends React.Component {
                   {game.stores.map((oneStore) => (
                     <div key={oneStore.id} className="one-store">
                       <h4>{oneStore.store.name}</h4>
-                      <a className="btn btn-info" href={oneStore.url} target="_blank" rel="noopener noreferrer">Buy Game Here!</a>
+                      <a className="btn btn-info" href={oneStore.url} target="_blank" rel="noopener noreferrer">Get Game Here!</a>
                     </div>
                   ))}
                 </div>

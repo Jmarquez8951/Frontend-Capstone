@@ -14,12 +14,14 @@ class MyProgress extends React.Component {
     return (
       <div className="MyProgress col-12 mt-3 mb-3">
           {ratings
-            ? <Progress multi>
-                <Progress bar className={ratings[0].title} value={ratings[0].percent}>{ratings[0].title.charAt(0).toUpperCase() + ratings[0].title.slice(1)}</Progress>
-                <Progress bar className={ratings[1].title} value={ratings[1].percent}>{ratings[1].title.charAt(0).toUpperCase() + ratings[1].title.slice(1)}</Progress>
-                <Progress bar className={ratings[2].title} value={ratings[2].percent}>{ratings[2].title.charAt(0).toUpperCase() + ratings[2].title.slice(1)}</Progress>
-                <Progress bar className={ratings[3].title} value={ratings[3].percent}>{ratings[3].title.charAt(0).toUpperCase() + ratings[3].title.slice(1)}</Progress>
-              </Progress>
+            ? <div className="progress-bar-ratings">
+                {ratings.map((oneRating) => (
+                  <div key={oneRating.id} className="one-progressbar-rating d-flex justify-content-center flex-column col-12">
+                    <h6 className="text-white">{oneRating.percent}%</h6>
+                    <Progress className={oneRating.title} value={oneRating.percent}>{oneRating.title.charAt(0).toUpperCase() + oneRating.title.slice(1)}</Progress>
+                  </div>
+                ))}
+              </div>
             : ''}
       </div>
     );
