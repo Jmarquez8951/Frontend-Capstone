@@ -19,6 +19,19 @@ const getAllMyUsersGames = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getWishlistValue = (gameId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/games/${gameId}.json`)
+    .then((response) => {
+      const value = response.data;
+      resolve(value.wishList);
+    })
+    .catch((err) => reject(err));
+});
+
+const addToWishlist = (gameId) => axios.patch(`${baseUrl}/games/${gameId}.json`, { wishList: true });
+
+const removeFromWishlist = (gameId) => axios.patch(`${baseUrl}/games/${gameId}.json`, { wishList: false });
+
 const addGameToMyGames = (newGame) => axios.post(`${baseUrl}/games.json`, newGame);
 
 const removeThisGame = (gameId) => axios.delete(`${baseUrl}/games/${gameId}.json`);
@@ -27,4 +40,7 @@ export default {
   getAllMyUsersGames,
   addGameToMyGames,
   removeThisGame,
+  addToWishlist,
+  removeFromWishlist,
+  getWishlistValue,
 };

@@ -12,6 +12,8 @@ class GameCards extends React.Component {
     toggleAlert: PropTypes.func,
     toggleSuccess: PropTypes.func,
     removeGame: PropTypes.func,
+    updateWishlist: PropTypes.func,
+    wishlistRemove: PropTypes.func,
   }
 
   addToMyGames = (e) => {
@@ -43,6 +45,18 @@ class GameCards extends React.Component {
     removeGame(game.id);
   }
 
+  addToWishlist = (e) => {
+    e.preventDefault();
+    const { game, updateWishlist } = this.props;
+    updateWishlist(game.id);
+  }
+
+  removeFromWishlist = (e) => {
+    e.preventDefault();
+    const { game, wishlistRemove } = this.props;
+    wishlistRemove(game.id);
+  }
+
   render() {
     const { game } = this.props;
     const singleLink = () => {
@@ -65,10 +79,10 @@ class GameCards extends React.Component {
     const wishlistRender = () => {
       if (game.wishList === true || game.wishList === false) {
         if (game.wishList === true) {
-          return <button className="btn btn-danger btn-sm m-1"><i className="fas fa-minus"></i> Remove from Wishlist</button>;
+          return <button onClick={this.removeFromWishlist} className="btn btn-danger btn-sm m-1"><i className="fas fa-minus"></i> Remove from Wishlist</button>;
         }
         if (game.wishList === false) {
-          return <button className="btn btn-success btn-sm m-1"><i className="fas fa-cart-plus"></i> Add to Wishlist</button>;
+          return <button onClick={this.addToWishlist} className="btn btn-success btn-sm m-1"><i className="fas fa-cart-plus"></i> Add to Wishlist</button>;
         }
       }
       return '';
