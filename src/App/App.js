@@ -71,7 +71,7 @@ class App extends React.Component {
               <PrivateRoute path='/games' component={Games} authed={authed}/>
               <PrivateRoute path='/game/:dbGameId' component={GameSingleView} authed={authed}/>
               <PrivateRoute path='/my-games' component={MyGames} authed={authed}/>
-              <PrivateRoute path='/my-game/:gameId' component={MyGameSingleView} authed={authed}/>
+              <PrivateRoute path='/my-game/:gameId/:dbGameId' component={MyGameSingleView} authed={authed}/>
               <PrivateRoute path='/profile' component={Profile} authed={authed}/>
               {/* <PrivateRoute path='/chats' component={ChatsPage} authed={authed}/>
               <PrivateRoute path='/chat/:discussionId' component={DiscussionPage} authed={authed}/> */}

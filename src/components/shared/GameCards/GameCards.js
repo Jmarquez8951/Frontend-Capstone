@@ -47,7 +47,7 @@ class GameCards extends React.Component {
     const { game } = this.props;
     const singleLink = () => {
       if (game.uid) {
-        return `/my-game/${game.id}`;
+        return `/my-game/${game.id}/${game.dbGameId}`;
       }
       return `/game/${game.slug}/${game.id}`;
     };
