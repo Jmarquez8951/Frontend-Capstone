@@ -1,0 +1,30 @@
+.MyProgress {
+  display: block;
+  .progress {
+    height: 30px !important;
+  }
+  .exceptional {
+    .progress-bar {
+      background-color: rgb(8, 160, 69) !important;
+      color: white;
+    }
+  }
+  .recommended {
+    .progress-bar {
+      background-color: rgb(51, 101, 138) !important;
+      color: white;
+    }
+  }
+  .meh {
+    .progress-bar {
+    background-color: rgb(254, 234, 0) !important;
+    color: black;
+    }
+  }
+  .skip {
+    .progress-bar {
+      background-color: rgb(247, 23, 53) !important;
+      color: black;
+    }
+  }
+}

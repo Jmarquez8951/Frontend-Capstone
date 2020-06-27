@@ -38,8 +38,7 @@ class MyGames extends React.Component {
 
     return (
       <div className="MyGames">
-        <h1>MyGames Page</h1>
-        {/* <Link className="btn btn-dark" to={'/my-game/21433'}>Click</Link> */}
+        <h1>My Vault</h1>
         <div className="d-flex flex-wrap justify-content-center">
           {buildGameCards}
         </div>

@@ -9,9 +9,9 @@ import smash from '../../../helpers/data/smash';
 class GameCards extends React.Component {
   static propTypes = {
     game: PropTypes.object.isRequired,
-    toggleAlert: PropTypes.func.isRequired,
-    toggleSuccess: PropTypes.func.isRequired,
-    removeGame: PropTypes.func.isRequired,
+    toggleAlert: PropTypes.func,
+    toggleSuccess: PropTypes.func,
+    removeGame: PropTypes.func,
   }
 
   addToMyGames = (e) => {
@@ -47,9 +47,9 @@ class GameCards extends React.Component {
     const { game } = this.props;
     const singleLink = () => {
       if (game.uid) {
-        return `/my-game/${game.id}`;
+        return `/my-game/${game.id}/${game.dbGameId}`;
       }
-      return `/game/${game.id}`;
+      return `/game/${game.slug}/${game.id}`;
     };
 
     const imgToRender = () => {

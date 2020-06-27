@@ -20,4 +20,35 @@ const searchForGame = (gameBeingSearched) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { searchForGame, getAllGames };
+const getSingleGame = (gameId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/${gameId}`)
+    .then((response) => {
+      const game = response.data;
+      resolve(game);
+    })
+    .catch((err) => reject(err));
+});
+
+const getGameScreenshots = (gameId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/${gameId}/screenshots`)
+    .then((response) => {
+      const images = [];
+      const theImages = response.data.results;
+      theImages.forEach((img) => {
+        const newImage = {
+          id: img.id,
+          src: img.image,
+        };
+        images.push(newImage);
+      });
+      resolve(images);
+    })
+    .catch((err) => reject(err));
+});
+
+export default {
+  searchForGame,
+  getAllGames,
+  getSingleGame,
+  getGameScreenshots,
+};
