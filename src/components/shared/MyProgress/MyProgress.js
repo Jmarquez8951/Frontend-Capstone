@@ -12,7 +12,7 @@ class MyProgress extends React.Component {
   render() {
     const { ratings } = this.props;
     return (
-      <div className="MyProgress mt-3 mb-3">
+      <div className="MyProgress col-12 mt-3 mb-3">
           {ratings
             ? <Progress multi>
                 <Progress bar className={ratings[0].title} value={ratings[0].percent}>{ratings[0].title.charAt(0).toUpperCase() + ratings[0].title.slice(1)}</Progress>

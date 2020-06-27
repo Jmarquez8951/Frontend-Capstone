@@ -4,7 +4,20 @@
     width: 96%;
     justify-self: center;
   }
-  .metacritic {
-    width: 30px;
+  .ratings {
+    h2 {
+      color: rgba(255, 255, 255, 0.616)
+    }
+    h3 {
+      color: rgba(255, 255, 255, 0.616)
+    }
+    margin: 20px;
+    background-color: rgb(59, 65, 60);
+    border: gray 3px solid;
+    border-radius: 10px;
+    box-shadow: rgb(87, 84, 84) 5px 5px 10px;
+    .metacritic {
+      width: 30px;
+    }
   }
 }
