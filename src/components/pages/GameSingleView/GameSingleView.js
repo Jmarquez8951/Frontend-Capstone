@@ -23,12 +23,15 @@ class GameSingleView extends React.Component {
 
   render() {
     const { game, images } = this.state;
+    const hasRatings = game.ratings;
 
     return (
       <div className="GameSingleView">
         <h1>{game.name}</h1>
         <div>
-          <img className="img-background" src={game.background_image} alt="background"/>
+          {game.background_image
+            ? <img className="img-background" src={game.background_image} alt="background"/>
+            : ''}
           <p>{game.released}</p>
           {game.esrb_rating
             ? <p key={game.esrb_rating.id}>ESRB Rating: {game.esrb_rating.name}</p>
@@ -65,8 +68,9 @@ class GameSingleView extends React.Component {
         <div className="m-5" >
           <ImageCarousel images={images}/>
         </div>
-        <div className="ratings">
-        <h2>Ratings</h2>
+        {Array.isArray(game.ratings) && hasRatings.length
+          ? <div className="ratings">
+          <h2>Ratings</h2>
         <div className="d-flex flex justify-content-between">
             {game.metacritic_url !== ''
               ? <div key={game.metacritic} className="ml-3 p-1 row bg-warning rounded">
@@ -99,6 +103,7 @@ class GameSingleView extends React.Component {
             </div>
           : ''}
           </div>
+          : ''}
           {game.platforms
             ? <div key="platforms" className="platforms">
               <h2>Available on</h2>
