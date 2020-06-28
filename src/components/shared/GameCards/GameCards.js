@@ -70,7 +70,7 @@ class GameCards extends React.Component {
       if (game.imgUrl) {
         return <img src={game.imgUrl} className="card-img-top border border-dark rounded" alt="game artwork"/>;
       }
-      if (game.short_screenshots[0].image) {
+      if (game.short_screenshots[0]) {
         return <img src={game.short_screenshots[0].image} className="card-img-top border border-dark rounded" alt="game artwork"/>;
       }
       return '';
