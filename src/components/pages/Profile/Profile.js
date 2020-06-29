@@ -18,12 +18,15 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-
+    this.getTheUser();
   }
 
   render() {
+    const { user } = this.state;
+
     return (
       <div className="Profile">
+        <h1>{user.username}</h1>
       </div>
     );
   }
