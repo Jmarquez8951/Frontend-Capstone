@@ -148,14 +148,15 @@ class MyModal extends React.Component {
             {editing === '.bio'
               ? <div className="form-group">
                   <label htmlFor="bioEdit">Change Biography</label>
-                  <input
-                  type="text"
+                  <textarea
                   className="form-control"
                   id="bioEdit"
                   aria-describedby="bioHelp"
-                  value={profileBio}
                   onChange={this.bioChange}
-                  />
+                  value={profileBio}
+                  rows="3"
+                  >
+                  </textarea>
                 </div>
               : ''}
           </ModalBody>

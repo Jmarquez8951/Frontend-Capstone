@@ -15,6 +15,10 @@ class Profile extends React.Component {
     wishlistGames: [],
     isOpen: false,
     valueToChange: '',
+    createUsername: '',
+    createProfilePic: '',
+    createFavoriteGame: '',
+    createBio: '',
   }
 
   getTheUser = () => {
@@ -40,6 +44,26 @@ class Profile extends React.Component {
 
   valueUserIsEditing = (value) => {
     this.setState({ valueToChange: value });
+  }
+
+  createProfilePicChange = (e) => {
+    e.preventDefault();
+    this.setState({ createProfilePic: e.target.value });
+  }
+
+  createUsernameChange = (e) => {
+    e.preventDefault();
+    this.setState({ createUsername: e.target.value });
+  }
+
+  createFavGameChange = (e) => {
+    e.preventDefault();
+    this.setState({ createFavoriteGame: e.target.value });
+  }
+
+  createBioChange = (e) => {
+    e.preventDefault();
+    this.setState({ createBio: e.target.value });
   }
 
   render() {
@@ -93,7 +117,51 @@ class Profile extends React.Component {
                 </div>
               </div>
             </div>
-          : <h1>Create Your Profile</h1>}
+          : <div className="col-12">
+              <h1>Create Your Profile</h1>
+              <div className="form-group">
+                  <label htmlFor="createProfilePic">Upload Profile Picture</label>
+                  <input
+                  type="text"
+                  className="form-control"
+                  id="createProfilePic"
+                  aria-describedby="profilePicHelp"
+                  onChange={this.createProfilePicChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="createUsername">Create a Username</label>
+                  <input
+                  type="text"
+                  className="form-control"
+                  id="createUsername"
+                  aria-describedby="createUsernameHelp"
+                  onChange={this.createUsernameChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="createFavoriteGame">What's Your Favorite Game/s</label>
+                  <input
+                  type="text"
+                  className="form-control"
+                  id="createFavoriteGame"
+                  aria-describedby="createFavoriteGameHelp"
+                  onChange={this.createFavGameChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="createBio">Biography</label>
+                  <textarea
+                  className="form-control"
+                  id="createBio"
+                  aria-describedby="createBioHelp"
+                  onChange={this.createBioChange}
+                  rows="3"
+                  >
+                  </textarea>
+                </div>
+            </div>
+        }
       </div>
     );
   }
