@@ -23,4 +23,6 @@ const getUserInformation = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserInformation };
+const updateUserInformation = (userId, updatedInfo) => axios.put(`${baseUrl}/users/${userId}.json`, updatedInfo);
+
+export default { getUserInformation, updateUserInformation };

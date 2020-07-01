@@ -4,7 +4,34 @@
     width: 275px;
     height: 275px;
   }
+  .profile-pic-container:hover {
+    cursor: pointer;
+    .hide {
+      display: inline;
+    }
+  }
   .wishlist-img {
     width: 90px;
+  }
+  .username:hover {
+    cursor: pointer;
+    .hide {
+      display: inline;
+    }
+  }
+  .favorite-game:hover {
+    cursor: pointer;
+    .hide {
+      display: inline;
+    }
+  }
+  .bio:hover {
+    cursor: pointer;
+    .hide {
+      display: inline;
+    }
+  }
+  .hide {
+    display: none;
   }
 }
