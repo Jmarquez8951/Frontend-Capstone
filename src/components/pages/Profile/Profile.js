@@ -66,6 +66,26 @@ class Profile extends React.Component {
     this.setState({ createBio: e.target.value });
   }
 
+  createUserProfile = (e) => {
+    e.preventDefault();
+    const {
+      createUsername,
+      createProfilePic,
+      createFavoriteGame,
+      createBio,
+    } = this.state;
+    const newProfile = {
+      username: createUsername,
+      profilePic: createProfilePic,
+      favoriteGame: createFavoriteGame,
+      bio: createBio,
+      uid: authData.getUid(),
+    };
+    usersData.createNewUserProfile(newProfile)
+      .then(() => this.getTheUser())
+      .catch((err) => console.error('could not create user profile', err));
+  }
+
   render() {
     const {
       user,
@@ -160,6 +180,7 @@ class Profile extends React.Component {
                   >
                   </textarea>
                 </div>
+                <button className="btn btn-secondary" onClick={this.createUserProfile}>Create Profile</button>
             </div>
         }
       </div>
