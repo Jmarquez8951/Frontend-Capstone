@@ -19,6 +19,24 @@ const getAllMyUsersGames = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getWishlistGames = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/games.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => {
+      const games = [];
+      const theGames = response.data;
+      if (theGames) {
+        Object.keys(theGames).forEach((gameId) => {
+          theGames[gameId].id = gameId;
+          if (theGames[gameId].wishList === true) {
+            games.push(theGames[gameId]);
+          }
+        });
+      }
+      resolve(games);
+    })
+    .catch((err) => reject(err));
+});
+
 const getWishlistValue = (gameId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/games/${gameId}.json`)
     .then((response) => {
@@ -43,4 +61,5 @@ export default {
   addToWishlist,
   removeFromWishlist,
   getWishlistValue,
+  getWishlistGames,
 };
