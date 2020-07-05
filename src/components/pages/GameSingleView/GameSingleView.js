@@ -27,17 +27,16 @@ class GameSingleView extends React.Component {
 
     return (
       <div className="GameSingleView">
-        <h1>{game.name}</h1>
+        <h1 className="font-weight-bold">{game.name}</h1>
         <div>
-          {game.background_image
-            ? <img className="img-background" src={game.background_image} alt="background"/>
-            : ''}
-          <p>{game.released}</p>
+          <img className="img-background rounded border border-dark" src={game.background_image} alt="background"/>
+          <p className="m-3">{game.released}</p>
           {game.esrb_rating
-            ? <p key={game.esrb_rating.id}>ESRB Rating: {game.esrb_rating.name}</p>
+            ? <p className="font-weight-bold" key={game.esrb_rating.id}>ESRB Rating: {game.esrb_rating.name}</p>
             : ''}
         </div>
-        <div className="description">
+        <div className="description border border-dark rounded">
+          <h2>Description</h2>
           <p>{game.description_raw}</p>
           {game.developers
             ? <div className="developer">
@@ -49,7 +48,7 @@ class GameSingleView extends React.Component {
                 ))}
             </div>
             : ''}
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex flex flex-wrap justify-content-center">
               <h3>Genres:</h3>
               { game.genres ? (game.genres.map((genre) => (
                 <p key={genre.id} className="bg-warning text-dark border border-dark rounded my-auto m-1 pr-2 pl-2">{genre.name}</p>
@@ -57,20 +56,22 @@ class GameSingleView extends React.Component {
             </div>
             <div className="tags">
                 <h3>Game Tags:</h3>
+                <div className="d-flex flex flex-wrap justify-content-center m-2">
                 {game.tags
                   ? (game.tags.map((oneTag) => (
-                    <div className="tag" key={oneTag.id}>
-                      <p>{oneTag.name}</p>
+                    <div className="tag col-3 bg-secondary rounded border border-dark m-2" key={oneTag.id}>
+                      <p className="my-auto">{oneTag.name}</p>
                     </div>)))
                   : ''}
+                </div>
             </div>
           </div>
-        <div className="m-5" >
+        <div className="carousel m-5" >
           <ImageCarousel images={images}/>
         </div>
         {Array.isArray(game.ratings) && hasRatings.length
           ? <div className="ratings">
-          <h2>Ratings</h2>
+        <h2>Ratings</h2>
         <div className="d-flex flex justify-content-between">
             {game.metacritic_url !== ''
               ? <div key={game.metacritic} className="ml-3 p-1 row bg-warning rounded">
@@ -106,37 +107,19 @@ class GameSingleView extends React.Component {
           : ''}
           {game.platforms
             ? <div key="platforms" className="platforms">
-              <h2>Available on</h2>
-              {game.platforms.map((onePlatform) => (
-                <div key={onePlatform.platform.id} className="bg-warning border border-dark rounded m-2">
-                  <p>{onePlatform.platform.name}</p>
-                  <small>{onePlatform.released_at}</small>
-                  {onePlatform.requirements
-                    ? <div className="requirements">
-                        <div className="min-requirements">
-                          <h4>Minimum Requirements</h4>
-                          {onePlatform.requirements.minimum}
-                        </div>
-                        <div className="rec-requirements">
-                          <h4>Recommended Requirements</h4>
-                          <p>{onePlatform.requirements.recommended}</p>
-                        </div>
-                      </div>
-                    : ''}
-                </div>
-              ))}
-             </div>
-            : ''}
-            {game.stores
-              ? <div key="stores" className="stores m-3">
+              <h2>Available Here</h2>
+              {game.stores
+                ? <div className="d-flex flex flex-wrap justify-content-center">
                   {game.stores.map((oneStore) => (
-                    <div key={oneStore.id} className="one-store">
-                      <h4>{oneStore.store.name}</h4>
-                      <a className="btn btn-info" href={oneStore.url} target="_blank" rel="noopener noreferrer">Get Game Here!</a>
-                    </div>
+                  <div key={oneStore.id} className="store bg-warning border border-dark rounded col-3 m-2 p-2">
+                    <h3>{oneStore.store.name}</h3>
+                    <a className="btn btn-info col-7" href={oneStore.url} target="_blank" rel="noopener noreferrer">Get Game Here</a>
+                  </div>
                   ))}
                 </div>
-              : ''}
+                : ''}
+             </div>
+            : ''}
       </div>
     );
   }
