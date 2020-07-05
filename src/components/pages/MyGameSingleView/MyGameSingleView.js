@@ -69,7 +69,9 @@ class GameSingleView extends React.Component {
         </div>
         <h1 className="font-weight-bold">{game.name}</h1>
         <div>
-          <img className="img-background rounded border border-dark" src={game.background_image} alt="background"/>
+          {game.background_image
+            ? <img className="img-background rounded border border-dark" src={game.background_image} alt="background"/>
+            : ''}
           <p className="m-3">{game.released}</p>
           {game.esrb_rating
             ? <p className="font-weight-bold" key={game.esrb_rating.id}>ESRB Rating: {game.esrb_rating.name}</p>
