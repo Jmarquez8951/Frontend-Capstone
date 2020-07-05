@@ -19,6 +19,7 @@ import GameSingleView from '../components/pages/GameSingleView/GameSingleView';
 import MyGameSingleView from '../components/pages/MyGameSingleView/MyGameSingleView';
 import Profile from '../components/pages/Profile/Profile';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
+import MyFooter from '../components/shared/MyFooter/MyFooter';
 
 import fbConnection from '../helpers/data/connection';
 
@@ -79,6 +80,7 @@ class App extends React.Component {
               <Redirect from="*" to="/home"/>
             </Switch>
             </div>
+            <MyFooter/>
           </React.Fragment>
         </BrowserRouter>
       </div>
