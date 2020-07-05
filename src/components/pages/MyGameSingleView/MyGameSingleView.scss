@@ -3,6 +3,15 @@
   .img-background {
     width: 96%;
     justify-self: center;
+    box-shadow: black 10px 10px 20px;
+  }
+  .description {
+    padding: 20px;
+    background-color: grey;
+    box-shadow: black 10px 10px 20px;
+  }
+  .carousel {
+    box-shadow: black 8px 8px 30px;
   }
   .ratings {
     h2 {
@@ -22,5 +31,8 @@
     .reddit-logo {
       font-size: 50px;
     }
+  }
+  .store {
+    box-shadow: black 5px 5px 20px;
   }
 }
