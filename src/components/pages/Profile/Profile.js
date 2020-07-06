@@ -114,7 +114,7 @@ class Profile extends React.Component {
         {user.username
           ? <div className="col-12">
               <h1>My Page</h1>
-              <div className="row">
+              <div className="d-flex flex justify-content-center">
                 <div className="align-content-start col-3">
                   <div onClick={() => { this.toggle(); this.valueUserIsEditing('.profile-pic'); }} className="profile-pic-container">
                     <i className="fas fa-edit hide"></i>
