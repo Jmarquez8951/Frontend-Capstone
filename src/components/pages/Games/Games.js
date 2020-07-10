@@ -45,6 +45,26 @@ class Games extends React.Component {
       .catch((err) => console.error('could not get games', err));
   }
 
+  previousPageChange = (e) => {
+    e.preventDefault();
+    const { previousPage } = this.state;
+    gameDB.changePage(previousPage)
+      .then((response) => {
+        this.setState({ games: response.results, nextPage: response.next, previousPage: response.previous });
+      })
+      .catch((err) => console.error('could not get next page', err));
+  }
+
+  nextPageChange = (e) => {
+    e.preventDefault();
+    const { nextPage } = this.state;
+    gameDB.changePage(nextPage)
+      .then((response) => {
+        this.setState({ games: response.results, nextPage: response.next, previousPage: response.previous });
+      })
+      .catch((err) => console.error('could not get next page', err));
+  }
+
   toggleAlert = (toggle) => {
     this.setState({ isOpen: toggle });
   }
@@ -59,6 +79,8 @@ class Games extends React.Component {
       games,
       isOpen,
       successIsOpen,
+      nextPage,
+      previousPage,
     } = this.state;
 
     const buildGameCards = games.map((game) => (
@@ -80,6 +102,16 @@ class Games extends React.Component {
             placeholder="Search"
             />
             <button className="btn btn-secondary col-1 ml-2" onClick={this.searchEvent}>Search</button>
+          </div>
+          <div className="d-flex flex justify-content-center">
+          {previousPage
+            ? <button className="btn btn-secondary m-3" onClick={this.previousPageChange}>Previous</button>
+            : ''
+          }
+          {nextPage
+            ? <button className="btn btn-secondary m-3" onClick={this.nextPageChange}>Next</button>
+            : ''
+          }
           </div>
         </form>
         <div className="d-flex flex-wrap justify-content-center">

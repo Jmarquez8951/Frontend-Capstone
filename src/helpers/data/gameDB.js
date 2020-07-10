@@ -46,9 +46,19 @@ const getGameScreenshots = (gameId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const changePage = (pageToChangeTo) => new Promise((resolve, reject) => {
+  axios.get(`${pageToChangeTo}`)
+    .then((response) => {
+      const games = response.data;
+      resolve(games);
+    })
+    .catch((err) => reject(err));
+});
+
 export default {
   searchForGame,
   getAllGames,
   getSingleGame,
   getGameScreenshots,
+  changePage,
 };
