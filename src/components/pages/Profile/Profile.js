@@ -24,7 +24,13 @@ class Profile extends React.Component {
   getTheUser = () => {
     usersData.getUserInformation(authData.getUid())
       .then((response) => {
-        this.setState({ user: response });
+        this.setState({
+          user: response,
+          createBio: response.bio,
+          createFavoriteGame: response.favoriteGame,
+          createProfilePic: response.profilePic,
+          createUsername: response.username,
+        });
       })
       .catch((err) => console.error('could not get user', err));
     myGamesData.getWishlistGames(authData.getUid())
@@ -108,9 +114,9 @@ class Profile extends React.Component {
         {user.username
           ? <div className="col-12">
               <h1>My Page</h1>
-              <div className="row">
-                <div className="d-flex flex align-content-start col-3">
-                  <div onClick={() => { this.toggle(); this.valueUserIsEditing('.profile-pic'); }} className="profile-pic-container border border-dark rounded-circle">
+              <div className="d-flex flex justify-content-center">
+                <div className="align-content-start col-3">
+                  <div onClick={() => { this.toggle(); this.valueUserIsEditing('.profile-pic'); }} className="profile-pic-container">
                     <i className="fas fa-edit hide"></i>
                     <img src={user.profilePic} alt='profile' className="profile-pic border border-dark rounded-circle"/>
                   </div>
@@ -129,7 +135,7 @@ class Profile extends React.Component {
                     <p className="my-auto bio" onClick={() => { this.toggle(); this.valueUserIsEditing('.bio'); }}><i className="fas fa-edit hide"></i> {user.bio}</p>
                   </div>
                 </div>
-                <div className="wishlist justify-content-center col-3 rounded border border-dark bg-success pt-1 pb-3">
+                <div className="wishlist justify-content-center col-3 rounded border border-dark bg-success pt-1 pb-3 m-3">
                   <h3><u>My Wishlist</u></h3>
                   <div className="d-flex flex-column">
                     {gamesFromWishlist}

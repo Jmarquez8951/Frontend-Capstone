@@ -20,23 +20,43 @@ class GameCards extends React.Component {
     e.preventDefault();
     const { game, toggleAlert, toggleSuccess } = this.props;
     const uid = authData.getUid();
-    const newGame = {
-      dbGameId: game.id,
-      gameName: game.name,
-      imgUrl: game.short_screenshots[0].image,
-      wishList: false,
-      uid,
-    };
-    smash.checkIfGoodToAdd(uid, newGame)
-      .then((response) => {
-        if (response === 1) {
-          toggleAlert(true);
-        }
-        if (response === 0) {
-          toggleSuccess(true);
-        }
-      })
-      .catch((err) => console.error('could not add to games', err));
+    if (game.short_screenshots[0]) {
+      const newGame = {
+        dbGameId: game.id,
+        gameName: game.name,
+        imgUrl: game.short_screenshots[0].image,
+        wishList: false,
+        uid,
+      };
+      smash.checkIfGoodToAdd(uid, newGame)
+        .then((response) => {
+          if (response === 1) {
+            toggleAlert(true);
+          }
+          if (response === 0) {
+            toggleSuccess(true);
+          }
+        })
+        .catch((err) => console.error('could not add to games', err));
+    } else {
+      const newGame = {
+        dbGameId: game.id,
+        gameName: game.name,
+        imgUrl: 'noImage',
+        wishList: false,
+        uid,
+      };
+      smash.checkIfGoodToAdd(uid, newGame)
+        .then((response) => {
+          if (response === 1) {
+            toggleAlert(true);
+          }
+          if (response === 0) {
+            toggleSuccess(true);
+          }
+        })
+        .catch((err) => console.error('could not add to games', err));
+    }
   }
 
   deleteGameEvent = (e) => {
@@ -67,6 +87,9 @@ class GameCards extends React.Component {
     };
 
     const imgToRender = () => {
+      if (game.imgUrl === 'noImage') {
+        return '';
+      }
       if (game.imgUrl) {
         return <img src={game.imgUrl} className="card-img-top border border-dark rounded" alt="game artwork"/>;
       }
