@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GameSafe
 
-## Available Scripts
+## Description
+GameSafe is a full CRUD website designed to save users game libraries. The site uses an external third-party API to retrieve thousands of games from PC to Xbox to even mobile games. This app allows the user to create a profile for themselves and add games to their profile. They can add games to their wishlist if they so choose to. Every game has its own page with all sorts of information about said game.
+## Screenshots
 
-In the project directory, you can run:
+### Login Page
+![screenshot](screenshots/screenshot1.PNG)
+This is the page you come to when you first get to the website.
 
-### `npm start`
+![screenshot](screenshots/screenshot2.PNG)
+This page shows up when you log in to the page.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Profile Page
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![screenshot](screenshots/screenshot19.PNG)
+When you go to the profile page without having a profile, this page pops up.
 
-### `npm test`
+![screenshot](screenshots/screenshot3.PNG)
+Once the information is filled out the user will see all the information they had inputted.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### The Users Games
 
-### `npm run build`
+![screenshot](screenshots/screenshot4.PNG)
+Here, all the games the user has added to their profile will show up.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![screenshot](screenshots/screenshot5.PNG)
+From there you can add it and remove it to your wishlist. You can also delete the game from your vault entirely.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![screenshot](screenshots/screenshot6.PNG)
+Here you can see that I added it to my wishlist.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![screenshot](screenshots/screenshot7.PNG)
+Here you can see it even changed the wishlist button here on the specific card.
 
-### `npm run eject`
+### Main Games Page
+![screenshot](screenshots/screenshot8.PNG)
+Here is the main games page.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![screenshot](screenshots/screenshot9.PNG)
+Here you can see that I am searching for games using the API's immense database.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![screenshot](screenshots/screenshot10.PNG)
+Here you can see the buttons will let you go through the API without having to type out a specific game.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![screenshot](screenshots/screenshot11.PNG)
+Here you can see that when you already have a game in your vault, an alert will pop up.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![screenshot](screenshots/screenshot12.PNG)
+Here you can see that if the game isn't in your vault, an alert pops up saying it's been added.
 
-## Learn More
+### Single View Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Here is the entire page and all the information shown is given through the API.
+![screenshot](screenshots/screenshot13.PNG)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![screenshot](screenshots/screenshot14.PNG)
 
-### Code Splitting
+![screenshot](screenshots/screenshot15.PNG)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![screenshot](screenshots/screenshot16.PNG)
 
-### Analyzing the Bundle Size
+![screenshot](screenshots/screenshot17.PNG)
+The API sometimes brings back user ratings and here I showcase them through progress bars.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![screenshot](screenshots/screenshot18.PNG)
+Here you can see all the places you can play the certain game.
 
-### Making a Progressive Web App
+## How To Run
+1. Clone down this repo
+1. Make sure you have http-server install via npm. If not get it [HERE](https://www.npmjs.com/package/http-server).
+1. On your command line run `hs -p 9999`
+1. In your browser go to `http://localhost:9999`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Or go to the Deployed link [Here](https://frontend-capstone-fe278.firebaseapp.com/)
