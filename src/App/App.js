@@ -18,6 +18,7 @@ import MyGames from '../components/pages/MyGames/MyGames';
 import GameSingleView from '../components/pages/GameSingleView/GameSingleView';
 import MyGameSingleView from '../components/pages/MyGameSingleView/MyGameSingleView';
 import Profile from '../components/pages/Profile/Profile';
+import ChatsPage from '../components/pages/ChatsPage/ChatsPage';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import MyFooter from '../components/shared/MyFooter/MyFooter';
 
@@ -74,8 +75,8 @@ class App extends React.Component {
               <PrivateRoute path='/my-games' component={MyGames} authed={authed}/>
               <PrivateRoute path='/my-game/:gameId/:dbGameId' component={MyGameSingleView} authed={authed}/>
               <PrivateRoute path='/profile' component={Profile} authed={authed}/>
-              {/* <PrivateRoute path='/chats' component={ChatsPage} authed={authed}/>
-              <PrivateRoute path='/chat/:discussionId' component={DiscussionPage} authed={authed}/> */}
+              <PrivateRoute path='/chats' component={ChatsPage} authed={authed}/>
+              {/* <PrivateRoute path='/chat/:discussionId' component={DiscussionPage} authed={authed}/> */}
               <PublicRoute path='/auth' component={Auth} authed={authed} />
               <Redirect from="*" to="/home"/>
             </Switch>
