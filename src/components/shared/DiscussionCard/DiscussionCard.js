@@ -14,15 +14,18 @@ class DiscussionCard extends React.Component {
     const { discussion, user } = this.props;
 
     return (
-      <div className="DiscussionCard m-3">
+      <div className="DiscussionCard m-3 col-12">
         <div className="card">
           <h5 className="card-header">{discussion.topic}</h5>
-          <div className="card-body flex justify-content-between">
+          <div className="card-body d-flex flex flex-column justify-content-center">
+            <div className="m-2">
+              {user.profilePic
+                ? <img className="rounded-circle img-fluid profile-pic m-2" src={user.profilePic} alt=""/>
+                : <img className="rounded-circle img-fluid" src="https://www.allianceplast.com/wp-content/uploads/no-image.png" alt=""/> }
+              <p className="card-text ">Conversation started by {user.username}</p>
+            </div>
             <Link to={`/chat/${discussion.id}`} className="btn btn-primary align-self-end">Go to Discussion</Link>
           </div>
-          <footer className="flex flex-wrap">
-            <small className="card-text ">Created by {user.username}</small>
-          </footer>
         </div>
       </div>
     );

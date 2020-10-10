@@ -46,8 +46,8 @@ class ChatsPage extends React.Component {
 
     return (
       <div className="ChatsPage">
-        <h1>ChatsPage</h1>
-          <div>
+        <h1>Give Your Two Cents</h1>
+          <div className="d-flex flex-column flex-fill justify-content-center">
             {buildDiscussionCards}
           </div>
       </div>

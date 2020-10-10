@@ -1,3 +1,18 @@
 .DiscussionCard {
   display: block;
+  .card {
+    background-color: #CED3DC;
+    color: #FCF7F8;
+    border: black solid 1px;
+    border-radius: 10px;
+    .card-body {
+      background-color: #4E8098;
+      border-top: black solid 1px;
+      border-radius: 0 0 10px;
+      .profile-pic {
+        height: 55px;
+        width: 55px;
+      }
+    }
+  }
 }
